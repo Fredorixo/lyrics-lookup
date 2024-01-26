@@ -1,4 +1,4 @@
-import os
+from os import getenv
 from dotenv import load_dotenv
 from lyricsgenius import Genius
 from pymongo.mongo_client import MongoClient
@@ -6,8 +6,8 @@ from pymongo.server_api import ServerApi
 
 load_dotenv()
 
-genius = Genius(os.getenv("GENIUS_ACCESS_TOKEN"), remove_section_headers = True)
-client = MongoClient(os.getenv("CONNECTION_STRING"), server_api = ServerApi('1'))
+genius = Genius(getenv("GENIUS_ACCESS_TOKEN"), remove_section_headers = True)
+client = MongoClient(getenv("CONNECTION_STRING"), server_api = ServerApi('1'))
 db = client.dev
 
 artists = ["Andy Shauf", "Alan Walker", "Marshmello", "Daler Mehndi", "Arijit Singh"]

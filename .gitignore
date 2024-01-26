@@ -1,2 +1,8 @@
+# VSCode Files
+.vscode/
+
 # Environment Variables
 .env
+
+# Web Server Related
+__pycache__/
