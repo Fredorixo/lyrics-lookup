@@ -6,15 +6,24 @@ from pymongo.server_api import ServerApi
 
 load_dotenv()
 
-genius = Genius(getenv("GENIUS_ACCESS_TOKEN"), remove_section_headers = True)
-client = MongoClient(getenv("CONNECTION_STRING"), server_api = ServerApi('1'))
+genius = Genius(access_token = getenv("GENIUS_ACCESS_TOKEN"), remove_section_headers = True)
+client = MongoClient(host = getenv("CONNECTION_STRING"), server_api = ServerApi('1'))
 db = client.dev
 
-artists = ["Andy Shauf", "Alan Walker", "Marshmello", "Daler Mehndi", "Arijit Singh"]
+artists = [item["item"]["name"] for item in (genius.charts(
+    type_ = "artists",
+    time_period = "all_time",
+    per_page = 50
+))["chart_items"]]
 
 for artist in artists:
     try:
-        songs = (genius.search_artist(artist, max_songs = 10, sort = "popularity")).songs
+        songs = (genius.search_artist(
+            artist_name = artist,
+            max_songs = 20,
+            sort = "popularity"
+        )).songs
+        
         for song in songs:
             db.songs.insert_one({
                 "title": song.title,
