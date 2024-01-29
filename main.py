@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from fastapi import FastAPI, HTTPException, status
+# from sentence_transformers import util
+# from torch import topk
 
 load_dotenv()
 

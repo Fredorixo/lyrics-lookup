@@ -3,9 +3,11 @@ from dotenv import load_dotenv
 from lyricsgenius import Genius
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
+model = SentenceTransformer('all-MiniLM-L6-v2')
 genius = Genius(access_token = getenv("GENIUS_ACCESS_TOKEN"), remove_section_headers = True)
 client = MongoClient(host = getenv("CONNECTION_STRING"), server_api = ServerApi('1'))
 db = client.dev
@@ -29,6 +31,7 @@ for artist in artists:
                 "title": song.title,
                 "artist": song.artist,
                 "lyrics": song.lyrics.partition("Lyrics")[-1],
+                # "lyrics": model.encode(sentences = song.lyrics.partition("Lyrics")[-1]),
                 "url": song.url
             })
     except:
