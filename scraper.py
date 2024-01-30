@@ -10,7 +10,7 @@ load_dotenv()
 model = SentenceTransformer('all-MiniLM-L6-v2')
 genius = Genius(access_token = getenv("GENIUS_ACCESS_TOKEN"), remove_section_headers = True)
 client = MongoClient(host = getenv("CONNECTION_STRING"), server_api = ServerApi('1'))
-db = client.dev
+db = client["dev"]["songs"]
 
 artists = [item["item"]["name"] for item in (genius.charts(
     type_ = "artists",
@@ -27,12 +27,14 @@ for artist in artists:
         )).songs
         
         for song in songs:
-            db.songs.insert_one({
+            song_lyrics = " ".join(song.lyrics.partition("Lyrics")[-1].split())
+
+            db.insert_one({
                 "title": song.title,
                 "artist": song.artist,
-                "lyrics": song.lyrics.partition("Lyrics")[-1],
-                # "lyrics": model.encode(sentences = song.lyrics.partition("Lyrics")[-1]),
-                "url": song.url
+                "lyrics": model.encode(sentences = song_lyrics),
+                "url": song.url,
+                "position": db.count_documents + 1
             })
     except:
         print("Error")
