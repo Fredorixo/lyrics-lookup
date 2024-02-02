@@ -1,4 +1,5 @@
 from os import getenv
+from string import digits
 from dotenv import load_dotenv
 from lyricsgenius import Genius
 from pymongo.mongo_client import MongoClient
@@ -28,15 +29,17 @@ for artist in artists:
     try:
         songs = [song.to_dict() for song in (genius.search_artist(
             artist_name = artist,
-            max_songs = 2,
+            max_songs = 30,
             sort = "popularity"
         )).songs]
         
         for song in songs:
             if(song["language"] != "en" or collection.count_documents({"title": song["title"], "artist": song["artist"]})):
                 continue
-
-            song_lyrics = " ".join(song["lyrics"].partition("Lyrics")[-1].split())
+            
+            text = song["lyrics"].split("Lyrics")[1].split("Embed")[0].rstrip(digits)
+            song_lyrics = " ".join(text.split())
+            embedding = model.encode(sentences = song_lyrics, convert_to_tensor = True)
             media = []
 
             for medium in song["media"]:
@@ -52,7 +55,7 @@ for artist in artists:
                 "artist": song["artist"],
                 "language": "English",
                 "date": song["release_date"],
-                "embeddings": model.encode(sentences = song_lyrics, convert_to_tensor = True),
+                "embedding": embedding.tolist(),
                 "url": song["url"],
                 "media": media
             })

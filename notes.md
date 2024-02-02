@@ -7,3 +7,5 @@
 - You can create also create different virtual environments using different python versions with the help of `pipenv shell --python <python_version>`.
 
 - Decided to perform sentence transformation over the song lyrics, as a single string as opposed to an array of strings.
+
+- Serialization was required to store the vector embeddings in MongoDB.

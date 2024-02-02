@@ -1,4 +1,5 @@
 from os import getenv
+from torch import Tensor
 from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
 from fastapi import FastAPI, HTTPException, status
@@ -15,7 +16,7 @@ app = FastAPI()
 @app.get("/get-songs")
 def get_songs(lyrics: str):
     try:
-        lyrics_embeddings = [document["embeddings"] for document in collection.find()]
+        lyrics_embeddings = Tensor([document["embedding"] for document in collection.find()])
         query_embedding = model.encode(sentences = lyrics, convert_to_tensor = True)
 
         results = util.semantic_search(
