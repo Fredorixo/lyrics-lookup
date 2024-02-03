@@ -25,6 +25,12 @@ def get_songs(lyrics: str):
             top_k = 10
         )[0]
 
-        return {"Results": [result["corpus_id"] for result in results]}
+        indexes = [result["corpus_id"] for result in results]
+        outcome = [document for document in collection.find({"_id": {"$in": indexes}}, {"embedding": 0})]
+
+        return {"songs": outcome}
     except:
-        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(
+            status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail = "An Internal Server Error Occurred"
+        )
