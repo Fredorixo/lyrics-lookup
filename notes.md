@@ -9,3 +9,5 @@
 - Decided to perform sentence transformation over the song lyrics, as a single string as opposed to an array of strings.
 
 - Serialization was required to store the vector embeddings in MongoDB.
+
+- Set up cron jobs to regularly execute scraper.py
