@@ -11,7 +11,11 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 client = MongoClient(getenv("CONNECTION_STRING"))
 collection = client["dev"]["songs"]
 
-app = FastAPI()
+app = FastAPI(
+    title = "Lyrics Lookup",
+    description = "An API To Query Songs Related To Given Lyrics",
+    docs_url = "/"
+)
 
 @app.get("/get-songs")
 def get_songs(lyrics: str):
