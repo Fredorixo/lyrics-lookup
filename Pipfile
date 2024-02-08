@@ -14,7 +14,8 @@ uvicorn = {extras = ["standard"], version = "*"}
 pymongo = "*"
 python-dotenv = "*"
 lyricsgenius = "*"
-sentence-transformers = "*"
 torch = {version = "*", index = "downloadpytorch"}
+scikit-learn = "*"
+sentence-transformers = "*"
 
 [dev-packages]
