@@ -15,7 +15,6 @@ pymongo = "*"
 python-dotenv = "*"
 lyricsgenius = "*"
 torch = {version = "*", index = "downloadpytorch"}
-scikit-learn = "*"
 sentence-transformers = "*"
 
 [dev-packages]
