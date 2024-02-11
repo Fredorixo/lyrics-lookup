@@ -10,4 +10,4 @@
 
 - Serialization was required to store the vector embeddings in MongoDB.
 
-- Set up cron jobs to regularly execute scraper.py
+- Set up cron jobs to regularly update MongoDB collection with new songs using web scraping.

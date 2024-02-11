@@ -13,9 +13,7 @@ fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 pymongo = "*"
 python-dotenv = "*"
-lyricsgenius = "*"
 torch = {version = "*", index = "downloadpytorch"}
 sentence-transformers = "*"
-python-cron = "*"
 
 [dev-packages]
