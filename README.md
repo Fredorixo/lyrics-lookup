@@ -1,6 +1,6 @@
 # Lyrics Lookup
 
-![image](https://github.com/Fredorixo/lyrics-lookup/assets/80041092/c1a9ef85-d305-47ec-ae39-e18d4198ad83)
+![image](https://github.com/Fredorixo/lyrics-lookup/assets/80041092/16b32c3a-adfe-4a1b-9cbc-5bbd4b6c3960)
 
 ## Introduction
 
