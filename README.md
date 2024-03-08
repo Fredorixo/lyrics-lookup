@@ -1,6 +1,20 @@
 # Lyrics Lookup
 
-![image](https://github.com/Fredorixo/lyrics-lookup/assets/80041092/16b32c3a-adfe-4a1b-9cbc-5bbd4b6c3960)
+<br />
+<div align="center">  
+  <img src="https://github.com/Fredorixo/lyrics-lookup/assets/80041092/9e4b78fb-6f78-4390-8bd6-c9f8778ac7a2" />
+
+  <br />
+  <br />
+
+  <p align="center">
+    <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
+    <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" />
+    <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" />
+    <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" />
+    <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" />
+  </p>
+</div>
 
 ## Introduction
 
