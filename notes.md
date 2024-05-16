@@ -11,3 +11,5 @@
 - Serialization was required to store the vector embeddings in MongoDB.
 
 - Set up cron jobs to regularly update MongoDB collection with new songs using web scraping.
+
+- Made use of Mean Reciprocal Rank(MRR) metric to find the accuracy of querying the target song based on its rank in the result.

@@ -10,6 +10,7 @@ load_dotenv()
 model = SentenceTransformer('all-MiniLM-L6-v2')
 client = MongoClient(getenv("CONNECTION_STRING"))
 collection = client["dev"]["songs"]
+lyrics_embeddings = Tensor([document["embedding"] for document in collection.find()])
 
 app = FastAPI(
     title = "Lyrics Lookup",
@@ -20,7 +21,6 @@ app = FastAPI(
 @app.get("/get-songs")
 def get_songs(lyrics: str):
     try:
-        lyrics_embeddings = Tensor([document["embedding"] for document in collection.find()])
         query_embedding = model.encode(sentences = lyrics, convert_to_tensor = True)
 
         results = util.semantic_search(
